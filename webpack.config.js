@@ -20,6 +20,11 @@ module.exports = {
         ],
       },
       {
+        resolve: {
+          extensions: ['.js', '.jsx'],
+        },
+      },
+      {
         test: [/\.(sa|sc|c)ss$/],
         use: ['style-loader', 'css-loader'],
       },
