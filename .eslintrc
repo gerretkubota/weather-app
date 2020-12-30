@@ -60,7 +60,6 @@
           "allowForLoopAfterthoughts": true
         }
       ],
-      "import/no-extraneous-dependencies": ["error", { "packageDir": ["./client"] }],
       "no-console": 0,
       "import/prefer-default-export": 0,
       "import": 0,
