@@ -1,6 +1,19 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
+import PropTypes from 'prop-types';
 
-const Body = () => <div>Body</div>;
+const useStyles = createUseStyles({
+  bodyContainer: {},
+});
+
+const Body = ({ children }) => {
+  const classes = useStyles();
+
+  return <div className={classes.bodyContainer}>{children}</div>;
+};
+
+Body.propTypes = {
+  children: PropTypes.node,
+};
 
 export default Body;
