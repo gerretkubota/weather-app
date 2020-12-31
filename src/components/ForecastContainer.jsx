@@ -6,11 +6,21 @@ import axios from 'axios';
 
 import Card from './Card';
 
-const useStyles = createUseStyles({});
+const useStyles = createUseStyles({
+  forecastContainer: {
+    display: 'flex',
+  },
+  tempInfo: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+});
 
 const imgAPI = (code) => `https://www.weatherbit.io/static/img/icons/${code}.png`;
 
 const ForecastContainer = ({ searchInput }) => {
+  const classes = useStyles();
   const [weather, setWeather] = useState();
 
   useEffect(() => {
@@ -41,20 +51,21 @@ const ForecastContainer = ({ searchInput }) => {
   console.log(weather);
 
   return (
-    <div>
+    <div className={classes.forecastContainer}>
       {weather &&
         weather.map(
           ({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }) => {
             // because the date format is 2020-12-30, I want to acquire 12-30
-            console.log('date_time', datetime);
             const day = datetime.split('-').slice(1).join('/');
             return (
               <Card key={moonrise_ts}>
                 <Card.Body>
                   <Card.Title>{day}</Card.Title>
                   <Card.Image imgSrc={imgAPI(imgCode)} />
-                  <p>{high_temp}</p>
-                  <p>{low_temp}</p>
+                  <div className={classes.tempInfo}>
+                    <p>{high_temp}</p>
+                    <p>{low_temp}</p>
+                  </div>
                 </Card.Body>
               </Card>
             );

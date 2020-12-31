@@ -3,7 +3,11 @@ import { createUseStyles } from 'react-jss';
 import PropTypes from 'prop-types';
 
 const useStyles = createUseStyles({
-  bodyContainer: {},
+  bodyContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 });
 
 const Body = ({ children }) => {
