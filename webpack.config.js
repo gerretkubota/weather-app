@@ -3,11 +3,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-module.exports = (env) => {
-  if (!env || !env.API_KEY) {
-    throw new Error(
-      'Make sure to run the command as npm run:devserver -- --env API_KEY=<yourApiKeyHere>'
-    );
+module.exports = () => {
+  if (!process.env.API_KEY) {
+    throw new Error('Make sure to run the command as API_KEY=<yourAPIKeyHere> npm run dev:server');
   }
 
   return {
@@ -46,7 +44,7 @@ module.exports = (env) => {
         inject: true,
       }),
       new webpack.DefinePlugin({
-        'process.env.API_KEY': JSON.stringify((env && env.API_KEY) || ''),
+        'process.env.API_KEY': JSON.stringify(process.env.API_KEY || ''),
       }),
     ],
     devServer: {
