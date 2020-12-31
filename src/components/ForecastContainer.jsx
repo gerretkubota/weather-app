@@ -12,7 +12,23 @@ const imgAPI = (code) => `https://www.weatherbit.io/static/img/icons/${code}.png
 
 const useStyles = createUseStyles({
   forecastContainer: {
+    border: '1px solid #ededed',
     display: 'flex',
+    "& div[class^='cardContainer']:hover": {
+      boxShadow: [0, 0, 4, '#000'],
+      '-webkit-box-shadow': [0, 0, 4, '#000'],
+      '-moz-box-shadow': [0, 0, 4, '#000'],
+      cursor: 'pointer',
+    },
+    "& div[class^='cardContainer']:first-child": {
+      border: '1px solid #ffbf00',
+      '&:hover': {
+        boxShadow: [0, 0, 4, '#ffbf00'],
+        '-webkit-box-shadow': [0, 0, 4, '#ffbf00'],
+        '-moz-box-shadow': [0, 0, 4, '#ffbf00'],
+        border: '1px solid #ffbf00',
+      },
+    },
   },
   loading: {
     width: '100%',
@@ -20,10 +36,19 @@ const useStyles = createUseStyles({
   tempInfo: {
     display: 'flex',
     justifyContent: 'space-around',
+    padding: [0, 20],
     width: '100%',
+    '& p': {
+      fontWeight: 500,
+    },
+    '& p:first-child': {
+      color: '#a8a8a8',
+    },
+    '& p:last-child': {
+      color: '#d3d3d3',
+    },
   },
   today: {
-    border: '1px solid #ffbf00',
     color: 'pink',
   },
 });
@@ -69,7 +94,7 @@ const ForecastContainer = ({ searchInput }) => {
         weather.map(
           ({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }, index) => (
             // because the date format is 2020-12-30, I want to acquire 12-30
-            <Card key={moonrise_ts} className={index === 0 ? classes.today : ''}>
+            <Card key={moonrise_ts}>
               <Card.Body>
                 <Card.Title>{convertDateToDay(datetime)}</Card.Title>
                 <Card.Image imgSrc={imgAPI(imgCode)} />

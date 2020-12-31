@@ -5,12 +5,16 @@ import Weather from './components/WeatherContainer';
 
 const useStyles = createUseStyles({
   '@global': {
-    body: {
+    '*': {
       boxSizing: 'border-box',
       margin: 0,
       padding: 0,
     },
   },
+  // '@font-face': {
+  //   fontFamily: 'Roboto',
+  //   src: 'url()'
+  // },
   appContainer: {
     display: 'flex',
     justifyContent: 'center',

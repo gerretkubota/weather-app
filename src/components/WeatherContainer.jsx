@@ -8,11 +8,14 @@ import Forecast from './ForecastContainer';
 const useStyles = createUseStyles({
   weatherContainer: {
     alignItems: 'center',
-    border: '1px solid #ededed',
+    // border: '1px solid #ededed',
     display: 'flex',
     flexDirection: 'column',
     marginTop: 50,
     width: 700,
+    "& div[class^='search']": {
+      marginBottom: 15,
+    },
   },
 });
 
@@ -23,6 +26,7 @@ const WeatherContainer = () => {
 
   return (
     <div className={classes.weatherContainer}>
+      <h1>Weather App</h1>
       <Search setSearchInput={setSearchInput} />
       <Forecast searchInput={searchInput} />
     </div>

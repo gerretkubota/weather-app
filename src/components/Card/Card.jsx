@@ -8,6 +8,7 @@ import Body from './Body';
 
 const useStyles = createUseStyles({
   cardContainer: {
+    padding: 10,
     width: 140,
   },
 });

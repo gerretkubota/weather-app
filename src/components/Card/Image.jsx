@@ -3,7 +3,11 @@ import { createUseStyles } from 'react-jss';
 import PropTypes from 'prop-types';
 
 const useStyles = createUseStyles({
-  imageContainer: {},
+  imageContainer: {
+    '& img': {
+      width: '100%',
+    },
+  },
 });
 
 const Image = ({ imgSrc, title }) => {
