@@ -6,7 +6,11 @@ import Title from './Title';
 import Image from './Image';
 import Body from './Body';
 
-const useStyles = createUseStyles({});
+const useStyles = createUseStyles({
+  cardContainer: {
+    width: 140,
+  },
+});
 
 const Card = ({ children }) => {
   const classes = useStyles();

@@ -5,7 +5,16 @@ import axios from 'axios';
 import Search from './Search';
 import Forecast from './ForecastContainer';
 
-const useStyles = createUseStyles({});
+const useStyles = createUseStyles({
+  weatherContainer: {
+    alignItems: 'center',
+    border: '1px solid #ededed',
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: 50,
+    width: 700,
+  },
+});
 
 const WeatherContainer = () => {
   const classes = useStyles();
@@ -13,7 +22,7 @@ const WeatherContainer = () => {
   const [searchInput, setSearchInput] = useState('Monterey Park, CA');
 
   return (
-    <div>
+    <div className={classes.weatherContainer}>
       <Search setSearchInput={setSearchInput} />
       <Forecast searchInput={searchInput} />
     </div>
