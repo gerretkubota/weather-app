@@ -8,6 +8,8 @@ import Card from './Card';
 
 const useStyles = createUseStyles({});
 
+const imgAPI = (code) => `https://www.weatherbit.io/static/img/icons/${code}.png`;
+
 const ForecastContainer = ({ searchInput }) => {
   const [weather, setWeather] = useState();
 
@@ -41,14 +43,23 @@ const ForecastContainer = ({ searchInput }) => {
   return (
     <div>
       {weather &&
-        weather.map(({ high_temp, low_temp, moonrise_ts }) => (
-          <Card key={moonrise_ts}>
-            <Card.Body>
-              <p>{high_temp}</p>
-              <p>{low_temp}</p>
-            </Card.Body>
-          </Card>
-        ))}
+        weather.map(
+          ({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }) => {
+            // because the date format is 2020-12-30, I want to acquire 12-30
+            console.log('date_time', datetime);
+            const day = datetime.split('-').slice(1).join('/');
+            return (
+              <Card key={moonrise_ts}>
+                <Card.Body>
+                  <Card.Title>{day}</Card.Title>
+                  <Card.Image imgSrc={imgAPI(imgCode)} />
+                  <p>{high_temp}</p>
+                  <p>{low_temp}</p>
+                </Card.Body>
+              </Card>
+            );
+          }
+        )}
     </div>
   );
 };
