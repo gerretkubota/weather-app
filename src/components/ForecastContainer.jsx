@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -71,8 +72,6 @@ const ForecastContainer = ({ searchInput }) => {
   const [weather, setWeather] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log('loader', loader);
-
   useEffect(() => {
     if (searchInput && searchInput.length) {
       setLoading(true);
@@ -101,24 +100,28 @@ const ForecastContainer = ({ searchInput }) => {
     }
   }, [searchInput]);
 
+  const cards = () =>
+    weather.map(({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }) => (
+      <Card key={moonrise_ts}>
+        <Card.Body>
+          <Card.Title>{convertDateToDay(datetime)}</Card.Title>
+          <Card.Image imgSrc={imgAPI(imgCode)} />
+          <div className={classes.tempInfo}>
+            <p>{Math.floor(high_temp)}&deg;</p>
+            <p>{Math.floor(low_temp)}&deg;</p>
+          </div>
+        </Card.Body>
+      </Card>
+    ));
+
   return (
     <div className={classes.forecastContainer}>
       {!loading && weather && weather.length ? (
-        weather.map(
-          ({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }, index) => (
-            // because the date format is 2020-12-30, I want to acquire 12-30
-            <Card key={moonrise_ts}>
-              <Card.Body>
-                <Card.Title>{convertDateToDay(datetime)}</Card.Title>
-                <Card.Image imgSrc={imgAPI(imgCode)} />
-                <div className={classes.tempInfo}>
-                  <p>{Math.floor(high_temp)}&deg;</p>
-                  <p>{Math.floor(low_temp)}&deg;</p>
-                </div>
-              </Card.Body>
-            </Card>
-          )
-        )
+        cards()
+      ) : !loading && !weather.length ? (
+        <div className={classes.loadingOuterContainer}>
+          <p>No data available for that location.</p>
+        </div>
       ) : (
         <div className={classes.loadingOuterContainer}>
           <div className={classes.loadingContainer}>
