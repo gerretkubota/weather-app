@@ -45,7 +45,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
-    "dev:server": "webpack serve --mode development",
+    "dev": "webpack serve --mode development",
     "format": "prettier-eslint --write \"$(pwd)/**/*.{js,jsx}\"",
     "lint": "eslint .",
     "lint:fix": "eslint '*.{js,jsx}' --quiet --fix",

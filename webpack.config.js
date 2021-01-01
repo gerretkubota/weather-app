@@ -5,7 +5,9 @@ const webpack = require('webpack');
 
 module.exports = () => {
   if (!process.env.API_KEY) {
-    throw new Error('Make sure to run the command as API_KEY=<yourAPIKeyHere> npm run dev:server');
+    throw new Error(
+      'Make sure to run the command as API_KEY=<yourAPIKey> npm run dev or API_KEY=<APIKey> npm run build'
+    );
   }
 
   return {
