@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { convertDateToDay } from '../helpers/dateHelper';
+import loader from '../assets/loading.gif';
 
 import Card from './Card';
 
@@ -14,6 +15,7 @@ const useStyles = createUseStyles({
   forecastContainer: {
     border: '1px solid #ededed',
     display: 'flex',
+    width: '100%',
     "& div[class^='cardContainer']:hover": {
       boxShadow: [0, 0, 4, '#000'],
       '-webkit-box-shadow': [0, 0, 4, '#000'],
@@ -30,8 +32,19 @@ const useStyles = createUseStyles({
       },
     },
   },
-  loading: {
+  loadingOuterContainer: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    minHeight: 183,
     width: '100%',
+  },
+  loadingContainer: {
+    height: 50,
+    width: 50,
+    '& img': {
+      width: '100%',
+    },
   },
   tempInfo: {
     display: 'flex',
@@ -57,6 +70,8 @@ const ForecastContainer = ({ searchInput }) => {
   const classes = useStyles();
   const [weather, setWeather] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  console.log('loader', loader);
 
   useEffect(() => {
     if (searchInput && searchInput.length) {
@@ -86,8 +101,6 @@ const ForecastContainer = ({ searchInput }) => {
     }
   }, [searchInput]);
 
-  console.log(weather);
-
   return (
     <div className={classes.forecastContainer}>
       {!loading && weather && weather.length ? (
@@ -107,7 +120,11 @@ const ForecastContainer = ({ searchInput }) => {
           )
         )
       ) : (
-        <p className={classes.loading}>Loading...</p>
+        <div className={classes.loadingOuterContainer}>
+          <div className={classes.loadingContainer}>
+            <img src={loader} alt="Loading" />
+          </div>
+        </div>
       )}
     </div>
   );

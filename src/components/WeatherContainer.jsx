@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import axios from 'axios';
 
 import Search from './Search';
 import Forecast from './ForecastContainer';
@@ -8,13 +7,15 @@ import Forecast from './ForecastContainer';
 const useStyles = createUseStyles({
   weatherContainer: {
     alignItems: 'center',
-    // border: '1px solid #ededed',
     display: 'flex',
     flexDirection: 'column',
     marginTop: 50,
     width: 700,
     "& div[class^='search']": {
       marginBottom: 15,
+    },
+    '& h1': {
+      fontSize: 50,
     },
   },
 });

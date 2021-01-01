@@ -4,17 +4,15 @@ import { createUseStyles } from 'react-jss';
 import Weather from './components/WeatherContainer';
 
 const useStyles = createUseStyles({
+  '@import': 'url(https://fonts.googleapis.com/css?family=Roboto)',
   '@global': {
     '*': {
       boxSizing: 'border-box',
       margin: 0,
       padding: 0,
+      fontFamily: 'Roboto',
     },
   },
-  // '@font-face': {
-  //   fontFamily: 'Roboto',
-  //   src: 'url()'
-  // },
   appContainer: {
     display: 'flex',
     justifyContent: 'center',
