@@ -22,8 +22,8 @@ const useStyles = createUseStyles({
 
 const WeatherContainer = () => {
   const classes = useStyles();
-
-  const [searchInput, setSearchInput] = useState('Monterey Park, CA');
+  // I will keep the default location as Los Angeles
+  const [searchInput, setSearchInput] = useState('Los Angeles, CA');
 
   return (
     <div className={classes.weatherContainer}>

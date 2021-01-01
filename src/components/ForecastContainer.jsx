@@ -116,14 +116,17 @@ const ForecastContainer = ({ searchInput }) => {
 
   return (
     <div className={classes.forecastContainer}>
+      {/* if it is done retrieiving data then display result */}
       {!loading && weather && weather.length ? (
         cards()
       ) : !loading && !weather.length ? (
         <div className={classes.loadingOuterContainer}>
+          {/* if it is d one retrieving data and no data set is returned */}
           <p>No data available for that location.</p>
         </div>
       ) : (
         <div className={classes.loadingOuterContainer}>
+          {/* in the process of retrieving data */}
           <div className={classes.loadingContainer}>
             <img src={loader} alt="Loading" />
           </div>
