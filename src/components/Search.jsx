@@ -2,6 +2,16 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
+  searchBtn: {
+    background: 'transparent',
+    border: 0,
+    '&:focus': {
+      outline: 0,
+    },
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
   searchContainer: {
     padding: 10,
     width: 420,
@@ -38,7 +48,9 @@ const Search = ({ setSearchInput }) => {
         }}
       >
         <input name="search" type="text" placeholder="City, State: Los Angeles, CA" />
-        <i className="fas fa-search" />
+        <button className={classes.searchBtn} type="submit">
+          <i className="fas fa-search" />
+        </button>
       </form>
     </div>
   );
