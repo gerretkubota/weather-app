@@ -6,11 +6,22 @@ const useStyles = createUseStyles({
     padding: 10,
     width: 420,
     '& form': {
+      border: '1px solid #111',
+      alignItems: 'center',
+      display: 'flex',
       width: '100%',
+      padding: [0, 10],
+    },
+    '& i': {
+      padding: 5,
     },
     '& input': {
-      padding: 10,
+      border: 0,
+      padding: [10, 0],
       width: '100%',
+      '&:focus': {
+        outline: 0,
+      },
     },
   },
 });
@@ -27,6 +38,7 @@ const Search = ({ setSearchInput }) => {
         }}
       >
         <input name="search" type="text" placeholder="City, State: Los Angeles, CA" />
+        <i className="fas fa-search" />
       </form>
     </div>
   );
