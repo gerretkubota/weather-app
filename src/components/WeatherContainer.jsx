@@ -13,9 +13,14 @@ const useStyles = createUseStyles({
     width: 700,
     "& div[class^='search']": {
       marginBottom: 15,
+      '@media screen and (max-width: 705px)': {
+        padding: [0, 10],
+        width: '100%',
+      },
     },
     '& h1': {
       fontSize: 50,
+      marginBottom: 10,
     },
   },
 });

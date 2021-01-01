@@ -32,6 +32,36 @@ const useStyles = createUseStyles({
         border: '1px solid #ffbf00',
       },
     },
+    '@media screen and (max-width: 705px)': {
+      padding: [0, 10],
+      flexDirection: 'column',
+      '& div[class^=cardContainer]': {
+        width: '100%',
+      },
+      '& div[class^=bodyContainer]': {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+      },
+      '& $headerContainer': {
+        alignItems: 'center',
+        '& p': {
+          fontSize: '1.2em',
+          fontWeight: 500,
+        },
+      },
+      '& $tempInfo': {
+        flexDirection: 'column',
+        width: 'auto',
+        '& p': {
+          fontSize: '2em',
+          padding: [10, 0],
+        },
+      },
+    },
+  },
+  headerContainer: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   loadingOuterContainer: {
     alignItems: 'center',
@@ -61,9 +91,6 @@ const useStyles = createUseStyles({
     '& p:last-child': {
       color: '#d3d3d3',
     },
-  },
-  today: {
-    color: 'pink',
   },
 });
 
@@ -104,8 +131,10 @@ const ForecastContainer = ({ searchInput }) => {
     weather.map(({ high_temp, low_temp, moonrise_ts, datetime, weather: { icon: imgCode } }) => (
       <Card key={moonrise_ts}>
         <Card.Body>
-          <Card.Title>{convertDateToDay(datetime)}</Card.Title>
-          <Card.Image imgSrc={imgAPI(imgCode)} />
+          <div className={classes.headerContainer}>
+            <Card.Title>{convertDateToDay(datetime)}</Card.Title>
+            <Card.Image imgSrc={imgAPI(imgCode)} />
+          </div>
           <div className={classes.tempInfo}>
             <p>{Math.floor(high_temp)}&deg;</p>
             <p>{Math.floor(low_temp)}&deg;</p>
